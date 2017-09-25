@@ -24,4 +24,8 @@ task :build_mruby do
   FileUtils.cp "mruby/build/tvos-universal/libmruby.a", "tvos/MRuby.framework/MRuby"
 end
 
+task :update do
+  `git submodule update --remote`
+end
+
 task default: 'build_mruby'

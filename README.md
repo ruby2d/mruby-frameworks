@@ -1,6 +1,11 @@
 # MRuby iOS and tvOS frameworks
 
-Run `rake` to cross compile and build the frameworks. Run `rake update` to update the MRuby source directory submodule.
+Run `rake` to cross compile and build the frameworks. To update the MRuby submodule:
+
+```
+cd mruby/
+git checkout tags/<latest_release_tag>
+```
 
 The prebuilt frameworks are located in `ios/` and `tvos/`, respectively.
 

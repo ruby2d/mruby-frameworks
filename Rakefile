@@ -1,10 +1,13 @@
+mruby_version = '1.4.0'
 
+desc 'Clean the project build files'
 task :clean do
   FileUtils.remove_dir 'ios/MRuby.framework', true
   FileUtils.remove_dir 'tvos/MRuby.framework', true
   FileUtils.remove_dir 'mruby/build', true
 end
 
+desc 'Build MRuby for iOS and tvOS'
 task :build_mruby => :clean do
   Dir.chdir('mruby') do
     ENV['MRUBY_CONFIG'] = '../build_config.rb'
@@ -30,8 +33,19 @@ task :build_mruby => :clean do
   FileUtils.cp 'mruby/build/tvos-universal/libmruby.a', 'tvos/MRuby.framework/MRuby'
 end
 
-task :update do
-  `git submodule update --remote`
+desc 'Set MRuby submodule to latest release'
+task :mruby_latest do
+  system 'git submodule update --remote && '\
+         'cd mruby && '\
+         "git checkout tags/#{mruby_version}"
+end
+
+desc 'Set MRuby submodule to master branch'
+task :mruby_master do
+  system 'git submodule update --remote && '\
+         'cd mruby && '\
+         'git checkout master && '\
+         'git pull --rebase'
 end
 
 task default: 'build_mruby'

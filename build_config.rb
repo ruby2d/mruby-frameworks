@@ -1,4 +1,3 @@
-
 CC = `xcrun -find clang`.strip
 
 def sdk_path(device); `xcrun --sdk #{device} --show-sdk-path`.strip end

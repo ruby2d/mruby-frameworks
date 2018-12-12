@@ -1,4 +1,6 @@
-mruby_version = '1.4.0'
+mruby_version = '2.0.0'
+
+task default: 'build_mruby'
 
 desc 'Clean the project build files'
 task :clean do
@@ -47,5 +49,3 @@ task :mruby_master do
          'git checkout master && '\
          'git pull --rebase'
 end
-
-task default: 'build_mruby'
